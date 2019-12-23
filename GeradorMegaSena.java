@@ -17,8 +17,8 @@ public class GeradorMegaSena {
         try {
 	        aposta = input.nextInt();
 	        
-	        if (aposta<=0) {
-	        	System.out.print("Deve ser maior que 0!\n");
+	        if (aposta<6) {
+	        	System.out.print("Deve ser maior igual a 6!\n");
 	        	GeradorMegaSena.main(null);
 	        }
 			
