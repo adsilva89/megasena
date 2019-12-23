@@ -4,44 +4,67 @@ import java.util.Scanner;
 
 public class GeradorMegaSena {
 	
-	static int aposta;
-	
-	public static void main(String args[]) {
-		String valorFinal;
-		int valor;
-		Random randomico = new Random();
+		
+	private int capturaDezenas() {
+
+		int dezenas =0;
 		Scanner input = new Scanner(System.in);
 
-        System.out.print("Quantas dezenas?\n");
-        
+
         try {
-	        aposta = input.nextInt();
+        	System.out.print("Quantas dezenas?\n");
+        	
+        	dezenas = input.nextInt();
 	        
-	        if (aposta<6) {
-	        	System.out.print("Deve ser maior igual a 6!\n");
-	        	GeradorMegaSena.main(null);
-	        }
-			
-		        while (aposta >15) {
-		        	
-		            	System.out.print("Deve ser menor que 15!\n");
-		                System.out.print("Quantas dezenas?\n");
-		                aposta = input.nextInt();            
-		        }
+        	while (dezenas<6 || dezenas >15 ) {
+        		System.out.print("Valor deve estar entre 6 e 15!\n");
+        		System.out.print("Quantas dezenas?\n");
+        		dezenas = input.nextInt();
+        	}
+        	
+	        	        			 
             }      
         catch (Exception e) {
-        	System.out.print("Deve ser somente numeros\n");
-        	GeradorMegaSena.main(null);
-
+        	System.out.print("Deve ser somente numeros, vou utiliza o padrao 6\n");     
+        	return 6;
         }
         
-		valorFinal = "";
-		
-	    int[] resultado = new int[aposta];
+        return dezenas;        
+        
 
-		for (int i= 0;i <aposta;i++) {	
-			
-			valor =  0;
+	}
+	
+	private int capturarJogos() {
+		Scanner input = new Scanner(System.in);
+		int jogos =0;
+		
+		try {
+        	System.out.print("Quantos jogos?\n");
+        	jogos = input.nextInt();
+	        
+	        while(jogos<1) {
+	        	System.out.print("Deve ser maior 0\n");
+	        	System.out.print("Quantos jogos?\n");
+	        	jogos = input.nextInt();
+	        }
+			 
+            }      
+        catch (Exception e) {
+        	System.out.print("Deve ser somente numeros, vou utilizar o padrao 1\n");
+        	return 1;
+        }
+	  
+		return jogos;
+		
+	}
+	
+	private String GeraDezenas(int dezenas) {
+		String valorFinal = "";		
+		int valor = 0;
+		Random randomico = new Random();
+		int[] resultado = new int[dezenas];
+
+		for (int i= 0;i <dezenas;i++) {	
 			
 			while (valor == 0) {
 				valor =  randomico.nextInt(60);
@@ -62,18 +85,39 @@ public class GeradorMegaSena {
 		}
 		
 		Arrays.sort(resultado);
-		
-		valorFinal = "";
+			
+	    valorFinal = "";
 		
 		for (int num : resultado) {
 			valorFinal += String.valueOf(num).concat(" ");
 		}
 
-		System.out.println(valorFinal);
+	    return valorFinal;		
 		
+	}
+	
+	public static void main(String args[]) {
+		int jogos = 0;
+		int dezenas =0;
+		String resultadoFinal ="";
+		Scanner input = new Scanner(System.in);
+		GeradorMegaSena geradorMegaSena = new GeradorMegaSena();
+
+		
+		jogos = geradorMegaSena.capturarJogos();
+		dezenas = geradorMegaSena.capturaDezenas();
+		        
+        
+		for (int i= 0;i <jogos;i++) {
+			
+			resultadoFinal += geradorMegaSena.GeraDezenas(dezenas).concat("\n");
+			
+		}
+		
+		System.out.print(resultadoFinal + "\n");		
 		System.out.print("Jogar novamente? S/N\n");
-        
-        
+		
+		
         if (input.next().toUpperCase().contains("S")) {
         	GeradorMegaSena.main(null);
         }{
@@ -83,4 +127,6 @@ public class GeradorMegaSena {
         }
 
 	}
+	
+	
 }
