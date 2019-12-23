@@ -78,6 +78,8 @@ public class GeradorMegaSena {
         	GeradorMegaSena.main(null);
         }{
         	System.out.print("Caso ganhe, lembre de mim :)\n");
+        	System.out.print("Até logo!\n");
+        	System.exit(0);
         }
 
 	}
