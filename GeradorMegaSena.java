@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class GeradorMegaSena {
 	
-		
+	static Scanner input = new Scanner(System.in);
+	
 	private int capturaDezenas() {
 
 		int dezenas =0;
-		Scanner input = new Scanner(System.in);
 
 
         try {
@@ -35,7 +35,7 @@ public class GeradorMegaSena {
 	}
 	
 	private int capturarJogos() {
-		Scanner input = new Scanner(System.in);
+
 		int jogos =0;
 		
 		try {
@@ -100,7 +100,6 @@ public class GeradorMegaSena {
 		int jogos = 0;
 		int dezenas =0;
 		String resultadoFinal ="";
-		Scanner input = new Scanner(System.in);
 		GeradorMegaSena geradorMegaSena = new GeradorMegaSena();
 
 		
