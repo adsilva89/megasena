@@ -114,6 +114,7 @@ public class GeradorMegaSena {
 			
 		}
 		
+		System.out.print("BOA SORTE, ESSES SAO SEUS NUMEROS:\n");
 		System.out.print(resultadoFinal + "\n");		
 		System.out.print("Jogar novamente? S/N\n");
 		
