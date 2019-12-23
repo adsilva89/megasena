@@ -1,3 +1,5 @@
+package br.com.juvo.commons.utils;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -36,30 +38,44 @@ public class GeradorMegaSena {
 
 		for (int i= 0;i <aposta;i++) {	
 			
-		    valor =  randomico.nextInt(60)+1;
+			valor =  0;
 			
-			
-			if (valorFinal.contains(String.valueOf(valor))) {
-				valor =  randomico.nextInt(60)+1;
-				if (valorFinal.contains(String.valueOf(valor))) {
-					valor =  randomico.nextInt(60)+1;
-				}
+			while (valor == 0) {
+				valor =  randomico.nextInt(60);
 			}
 			
-			resultado[i] = randomico.nextInt(60)+1;
+		    
+			while (valorFinal.contains(String.valueOf(valor))) {
+				valor =  0;
+				while (valor == 0) {
+					valor =  randomico.nextInt(60);
+				}
+				
+			}
+			
+			resultado[i] = valor;
+			valorFinal = valorFinal.concat(String.valueOf(valor).concat(" "));
 			
 		}
 		
 		Arrays.sort(resultado);
 		
+		valorFinal = "";
+		
 		for (int num : resultado) {
 			valorFinal += String.valueOf(num).concat(" ");
-			}
+		}
 
-		
 		System.out.println(valorFinal);
-		System.out.print("Caso ganhe, lembre de mim :)");        
-        aposta = input.nextInt();
+		
+		System.out.print("Jogar novamente? S/N\n");
+        
+        
+        if (input.next().toUpperCase().contains("S")) {
+        	GeradorMegaSena.main(null);
+        }{
+        	System.out.print("Caso ganhe, lembre de mim :)\n");
+        }
 
 	}
 }
