@@ -1,5 +1,3 @@
-package br.com.juvo.commons.utils;
-
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
